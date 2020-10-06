@@ -34,13 +34,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         //没有权限会跳转到登陆页面
 
         //开启登录页面
-        http.formLogin();
+//        http.formLogin();//默认的登录界面
+        http.formLogin().loginPage("/my_login").usernameParameter("username").passwordParameter("password").loginProcessingUrl("/login");//自己的登录界面
 
         //防止网站攻击
         http.csrf().disable();//关闭
 
         //开启注销功能
-        http.logout().logoutUrl("/");
+//        http.logout().logoutUrl("/");
+
+        //开启记住我功能
+        http.rememberMe().rememberMeParameter("remember");
 
     }
 
@@ -58,7 +62,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .withUser("vip3").password(new BCryptPasswordEncoder().encode("123456")).roles("vip3")
                 .and()
-                .withUser("admin").password(new BCryptPasswordEncoder().encode("123456")).roles("vip1","vip2","vip3");
+                .withUser("admin").password(new BCryptPasswordEncoder().encode("123456")).roles("vip1", "vip2", "vip3");
 
     }
 }

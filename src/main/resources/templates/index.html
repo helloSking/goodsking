@@ -18,7 +18,8 @@
                             <li class="active"><a th:href="@{/index}">首页</a></li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
-                            <li sec:authorize="!isAuthenticated()"><a th:href="@{/login}">登录</a></li>
+                            <!--<li sec:authorize="!isAuthenticated()"><a th:href="@{/login}">登录1</a></li>-->
+                            <li sec:authorize="!isAuthenticated()"><a th:href="@{/my_login}">登录2</a></li>
 
                             <li sec:authorize="isAuthenticated()"><a sec:authentication="principal.username"></a></li>
 
@@ -31,7 +32,15 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-4">
+
+        <div class="col-md-12" >
+            <div class="panel panel-default">
+                <div class="panel-heading">Panel heading without title</div>
+            </div>
+        </div>
+
+
+        <div class="col-md-4" sec:authorize="hasRole('vip1')">
             <div class="panel panel-default">
                 <div class="panel-heading">Panel heading without title</div>
                 <div class="panel-body">
@@ -42,7 +51,7 @@
             </div>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-4" sec:authorize="hasRole('vip2')">
             <div class="panel panel-default">
                 <div class="panel-heading">Panel heading without title</div>
                 <div class="panel-body">
@@ -53,7 +62,7 @@
             </div>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-4" sec:authorize="hasRole('vip3')">
             <div class="panel panel-default">
                 <div class="panel-heading">Panel heading without title</div>
                 <div class="panel-body">
